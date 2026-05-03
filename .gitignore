@@ -1,0 +1,29 @@
+# Environment variables (contains secrets — never commit)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Test outputs
+tests/test_generated_*.py
+reports/
+logs/
+
+# Vector store (local persistence)
+vector_store/
+
+# Allure
+allure-results/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

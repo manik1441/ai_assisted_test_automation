@@ -1,0 +1,48 @@
+llm:
+  provider: openrouter
+  # Model is swappable — OpenRouter supports 100+ models.
+  # Examples:
+  #   openai/gpt-4o-mini          (fast, cheap)
+  #   anthropic/claude-3-haiku    (good for code gen)
+  #   google/gemini-flash-1.5     (very fast)
+  model: openai/gpt-4o-mini
+  temperature: 0.1
+  max_tokens: 4096
+  base_url: https://openrouter.ai/api/v1
+
+execution:
+  browser: chromium          # options: chromium | firefox | webkit
+  headless: true
+  self_healing: true
+  timeout_ms: 30000
+  output_dir: ./tests        # Generated test scripts land here
+
+reporting:
+  allure: true
+  attach_screenshots: true
+  attach_logs: true
+  attach_api_responses: true
+  report_dir: ./reports
+
+vector_store:
+  provider: chroma
+  persist_directory: ./vector_store
+  collection_prefix: atf
+
+jira:
+  enabled: true
+  # write_back controls Jira write permissions:
+  #   false → read-only  (fetch ticket, use as test input)
+  #   true  → read+write (fetch ticket AND post test results back)
+  write_back: false
+  base_url: ""               # Override via env: JIRA_BASE_URL
+  project_key: ""            # Override via env: JIRA_PROJECT_KEY
+
+logging:
+  level: INFO                # DEBUG | INFO | WARNING | ERROR
+  format: json               # json | console
+  output_dir: ./logs
+
+cicd:
+  provider: github_actions   # options: github_actions | gitlab_ci
+  output_dir: ./.github/workflows
